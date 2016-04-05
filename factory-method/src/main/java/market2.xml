@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:market xmlns:tns="http://www.example.org/market"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/market market.xsd ">
+	<tns:orders>
+		<tns:order></tns:order>
+	</tns:orders>
+	
+</tns:market>

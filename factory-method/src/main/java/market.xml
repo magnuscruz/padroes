@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<market>
+	<orders>
+		<order product="MAÇA" total="10"/>
+		<order product="ARROZ" total="5"/>
+	</orders>
+	<customer cpf="99999999999" name="MAGNUS"/>
+</market>

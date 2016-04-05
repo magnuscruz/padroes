@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/market"
+	xmlns:tns="http://www.example.org/market" elementFormDefault="qualified">
+
+    <element name="market" type="tns:MarketType"></element>
+
+	<complexType name="MarketType">
+		<sequence minOccurs="1">
+			<element name="orders" type="tns:OrdersType"></element>
+			<element name="customer" type="tns:CustomerType"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="OrdersType">
+		<sequence>
+			<element name="order" type="tns:OrderType" minOccurs="1"/>
+		</sequence>
+
+	</complexType>
+
+	<complexType name="OrderType">
+		<attribute name="product" type="string"></attribute>
+		<attribute name="total" type="int"></attribute>
+	</complexType>
+	<complexType name="CustomerType">
+		<attribute name="name" type="string"></attribute>
+		<attribute name="cpf" type="string"></attribute>
+	</complexType>
+</schema>
