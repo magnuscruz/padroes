@@ -1,0 +1,77 @@
+<ui:composition template="/pages/layouts/layoutCadastro.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+	<ui:define name="titulo">
+	MANTER PRODUTOS OI
+	</ui:define>
+	<ui:define name="contentCadastro">
+		<fieldset>
+
+			<legend>Dados do Produto</legend>
+
+			<t:saveState value="#{produtoBean.dataModel}"></t:saveState>
+			<label for="nome">Nome: </label>
+			<p:inputText id="nome" value="#{produtoBean.nome}" required="true"
+				requiredMessage="Nome é requerido." />
+			<br /> <label for="valor">Valor: </label>
+			<p:inputText id="valor" value="#{produtoBean.valor}" required="true"
+				requiredMessage="Valor é requerido." />
+			<br />
+			<p:commandButton action="#{produtoBean.inserir}" update="@form"
+				value="Inserir" />
+			<p:commandButton action="#{produtoBean.alterar}" update="@form"
+				value="Alterar" />
+			<p:commandButton action="#{produtoBean.remover}" update="@form"
+				value="Remover" />
+			<p:commandButton action="#{produtoBean.pesquisar}" process="@this,:formCadastro:nome"
+				update="@form" value="Pesquisar" />
+
+		</fieldset>
+		<fieldset>
+			<legend>Lista de Produtos</legend>
+			<p:dataTable id="produtoTable" value="#{produtoBean.dataModel}"
+				var="item" rows="5" selectionMode="single" lazy="true"
+				selection="#{produtoBean.produto}" rowKey="#{item.codigo}"
+				paginator="true" paginatorAlwaysVisible="true">
+				<p:ajax event="rowSelect" listener="#{produtoBean.onRowSelect}"
+					update="@form" />
+				<p:ajax event="rowUnselect" listener="#{produtoBean.onRowUnselect}"
+					update="@form" />
+				<p:column>
+					<f:facet name="header">NOME</f:facet> #{item.nome}
+				</p:column>
+				<p:column>
+					<f:facet name="header">VALOR</f:facet> #{item.valor}
+				</p:column>
+				<f:facet name="footer">
+					<p:commandButton process="produtoTable" update="@form"
+						icon="ui-icon-search" value="Selecionar"
+						oncomplete="PF('produtoDialog').show()"
+						action="#{produtoBean.selecionar}" />
+				</f:facet>
+			</p:dataTable>
+		</fieldset>
+		<p:dialog id="produtoDialog" header="Dados do Produto"
+			widgetVar="produtoDialog" resizable="false" modal="false"
+			style="z-index: 2000 !important;overflow: visible !important;">
+			<p:outputPanel id="produtoDetail" style="text-align:center;">
+				<p:panelGrid columns="2" rendered="#{not empty produtoBean.produto}"
+					columnClasses="label,value">
+					<h:outputText value="Código:" />
+					<h:outputText value="#{produtoBean.produto.codigo}" />
+
+					<h:outputText value="Nome" />
+					<h:outputText value="#{produtoBean.produto.nome}" />
+
+					<h:outputText value="Valor" />
+					<h:outputText value="R$ #{produtoBean.produto.valor}" />
+				</p:panelGrid>
+			</p:outputPanel>
+		</p:dialog>
+
+	</ui:define>
+</ui:composition>

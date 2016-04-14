@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14127969370400" configfile="/ComprasWeb/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf14158172577400" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14158192655273 pf14158192655274 pf14158192655275" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" id="pf14158172577402" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14158192655273" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" id="pf14158192655276" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14158192655274" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="sucesso.xhtml" id="pf14158192655277" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf14158192655275" path="/sucesso.xhtml"/>
+  <links id="pf14158192655273" target="pf14158172577402" source="pf14158172577400" outcome="login" redirect="true"/>
+  <links id="pf14158192655274" target="pf14158192655276" source="pf14158172577400" outcome="index" redirect="true"/>
+  <links id="pf14158192655275" target="pf14158192655277" source="pf14158172577400" outcome="sucesso" redirect="true"/>
+</pageflow:Pageflow>

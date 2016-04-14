@@ -1,0 +1,31 @@
+<ui:composition template="/pages/layouts/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+	<ui:define name="content">
+		<h:form id="formCadastro">
+			<p>
+			<h2>
+				<b><ui:insert name="titulo">Put default content here, if any.</ui:insert></b>
+			</h2>
+			</p>
+			<p:ajaxStatus onstart="PF('statusDialog').show()"
+				onsuccess="PF('statusDialog').hide()" />
+
+			<p:dialog widgetVar="statusDialog" modal="true" draggable="false"
+				closable="false" resizable="false" showHeader="false">
+				<img src="/ComprasWeb/images/ajax-loading-bar.gif" border="0" />
+			</p:dialog>
+
+			<p>
+				<h:messages showSummary="true" showDetail="false"
+					infoStyle="color:green;" errorStyle="color:red;"></h:messages>
+			</p>
+
+			<ui:insert name="contentCadastro">Put default content here, if any.</ui:insert>
+		</h:form>
+	</ui:define>
+</ui:composition>

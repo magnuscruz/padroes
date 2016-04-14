@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/pages/layouts/layout.xhtml">
+	<ui:define name="titulo">Efetuar login</ui:define>
+	<ui:define name="contentCadastro">
+		<h:form id="form" prependId="false">
+			<p:messages id="msgs"/>
+	 		<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="login" value="#{labels['conta.login']}:" />
+				<p:inputText value="#{loginBean.conta.login}" id="login" required="true" label="#{labels['conta.login']}"/>  
+	              
+	            <h:outputLabel for="password" value="#{i18n['conta.senha']}:" />  
+	            <h:inputSecret value="#{loginBean.conta.senha}" id="password" required="true" label="#{labels['conta.senha']}"/>  
+	              
+	            <f:facet name="footer">  
+	                <p:commandButton id="loginButton" value="Login" update="msgs" action="#{loginBean.efetuarLogin}"  />  
+	            </f:facet>  
+	        </h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
