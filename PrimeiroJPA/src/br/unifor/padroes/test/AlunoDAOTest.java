@@ -1,5 +1,7 @@
 package br.unifor.padroes.test;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -17,6 +19,7 @@ import br.unifor.padroes.jpa.AlunoDAOImpl;
 import br.unifor.padroes.jpa.CRUDDao;
 import br.unifor.padroes.jpa.FabricaEntityManager;
 import br.unifor.padroes.jpa.Geral;
+import br.unifor.padroes.jpa.Tarefa;
 
 /**
  * @author professort7
@@ -44,7 +47,23 @@ public class AlunoDAOTest extends TestCase {
 		// Noava intancia de aluno
 		Aluno aluno = new Aluno();
 		aluno.setNome("MAGNUS ALENCAR DA CRUZ");
+		Tarefa tarefa1 = new Tarefa();
+		tarefa1.setDescricao("DESCRICAO 1");
+		tarefa1.setFinalizado(false);
+		tarefa1.setDataFinalizacao(Calendar.getInstance());
+		Tarefa tarefa2 = new Tarefa();
+		tarefa2.setDescricao("DESCRICAO 2");
+		tarefa2.setFinalizado(true);
+		tarefa2.setDataFinalizacao(Calendar.getInstance());
+
+		List<Tarefa> tarefas= new ArrayList<Tarefa>();
+		tarefas.add(tarefa1);
+		tarefas.add(tarefa2);
+		
+		aluno.setTarefas(tarefas);
+		
 		dao.save(aluno);
+		
 		assertNotNull(aluno.getId());
 	}
 

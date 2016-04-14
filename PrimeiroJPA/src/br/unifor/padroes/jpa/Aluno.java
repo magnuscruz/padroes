@@ -3,6 +3,7 @@ package br.unifor.padroes.jpa;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,7 +28,7 @@ public class Aluno {
 	@Column(name = "data_nascimento", nullable = true)
 	private Calendar dataNascimento;
 
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<Tarefa> tarefas = null;
 
 	@OneToOne(fetch=FetchType.LAZY)
