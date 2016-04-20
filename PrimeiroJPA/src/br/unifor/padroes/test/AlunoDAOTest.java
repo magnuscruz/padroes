@@ -100,4 +100,35 @@ public class AlunoDAOTest extends TestCase {
 		list = dao.listAll();
 		assertEquals(list.size(), size);
 	}
+
+	@Test
+	public void testCountAllAluno() {
+		Long count = dao.countAll();
+
+		Aluno aluno = new Aluno();
+		String nome = "MAGNUS ALENCAR DA CRUZ";
+		aluno.setNome(nome);
+		dao.save(aluno);
+		Long count2 = dao.countAll();
+		assertEquals(count2, new Long(count + 1));
+	}
+
+
+	@Test
+	public void testFindAllPaginatorAluno() {
+		Long count = dao.countAll();
+	
+		int page=4;
+		int i=0;
+		List<Aluno> list = null;
+		for (; i<count; i+=page) {
+			list = dao.listAll(i, page);	
+			if (i+page<count) {
+				assertEquals(list.size(), page);
+			} else {
+				assertEquals(list.size(), count-i);
+			}
+		}
+	}
+	
 }

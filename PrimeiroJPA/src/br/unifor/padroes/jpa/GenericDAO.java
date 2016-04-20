@@ -5,8 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-public abstract class GenericDAO<T, ID> implements CRUDDao<T, ID>  {
-
+public abstract class GenericDAO<T, ID> implements CRUDDao<T, ID> {
 
 	public GenericDAO() {
 	}
@@ -34,10 +33,35 @@ public abstract class GenericDAO<T, ID> implements CRUDDao<T, ID>  {
 
 	@Override
 	public List<T> listAll() {
-		 TypedQuery<T> query = getEntityManager().createQuery("select o from "
-				+ getPersistenceClass().getSimpleName() + " o", getPersistenceClass());
+		TypedQuery<T> query = getEntityManager()
+				.createQuery(
+						"select o from "
+								+ getPersistenceClass().getSimpleName() + " o",
+						getPersistenceClass());
 		List<T> list = query.getResultList();
 		return list;
+	}
+
+	@Override
+	public List<T> listAll(Integer firstResult, Integer maxResult) {
+		TypedQuery<T> query = getEntityManager()
+				.createQuery(
+						"select o from "
+								+ getPersistenceClass().getSimpleName() + " o",
+						getPersistenceClass());
+		query.setFirstResult(firstResult);
+		query.setMaxResults(maxResult);
+		List<T> list = query.getResultList();
+		return list;
+	}
+
+	@Override
+	public Long countAll() {
+		TypedQuery<Long> query = getEntityManager().createQuery(
+				"select count(o) from " + getPersistenceClass().getSimpleName()
+						+ " o", Long.class);
+		Long count = query.getSingleResult();
+		return count;
 	}
 
 	protected abstract Class<T> getPersistenceClass();

@@ -12,4 +12,8 @@ public interface CRUDDao<T, ID> {
 	public List<T> listAll();
 
 	public T findById(ID id);
+
+	Long countAll();
+
+	List<T> listAll(Integer firstResult, Integer maxResult);
 }
